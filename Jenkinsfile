@@ -13,5 +13,11 @@ pipeline{
             git branch: 'main', url: 'https://github.com/SarumathyPrabakaran/Slack-Jenkins/'
             }
         }
+
+        stage('Notify'){
+            steps{
+                slackSend channel: 'devops-learnings', color: 'warning', message: 'Heyy!! Commit Has been made', tokenCredentialId: 'jenkinsSecretTokenBySlack'
+            }
+        }
     }
 }
