@@ -24,7 +24,7 @@ pipeline {
                     ])
 
                     // Extract commit message
-                    def commitMessage = commitDetails.GIT_COMMIT.message
+                    def commitMessage = commitDetails.GIT_COMMITTER_MESSAGE
 
                     // Include the commit message, repo name, and job name in the environment
                     currentBuild.description = "Commit Message: $commitMessage, Repo Name: $REPO_NAME, Job Name: $JOB_NAME"
