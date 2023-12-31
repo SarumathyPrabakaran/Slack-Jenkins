@@ -1,1 +1,2 @@
 Just to check if Jenkins integration works
+Repository is private --> check if configuration is set correctly
