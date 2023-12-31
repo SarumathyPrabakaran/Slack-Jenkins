@@ -16,7 +16,7 @@ pipeline{
 
         stage('Notify'){
             steps{
-                slackSend channel: 'devops-learnings', color: 'warning', message: 'Heyy!! Commit Has been made', tokenCredentialId: 'jenkinsSecretTokenBySlack'
+                slackSend channel: 'devops-learning', color: 'warning', message: 'Heyy!! Commit Has been made', tokenCredentialId: 'jenkinsSecretTokenBySlack'
             }
         }
     }
