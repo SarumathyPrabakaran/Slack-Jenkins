@@ -16,15 +16,15 @@ pipeline {
         stage('GitStage') {
             steps {
                 script {
-                    // Clone the repository and capture commit details
-                    def commitDetails = checkout([
+                    // Clone the repository
+                    checkout([
                         $class: 'GitSCM',
                         branches: [[name: 'main']],
                         userRemoteConfigs: [[url: 'https://github.com/SarumathyPrabakaran/Slack-Jenkins/']]
                     ])
 
-                    // Extract commit message
-                    def commitMessage = commitDetails.GIT_COMMITTER_MESSAGE
+                    // Get the latest commit message
+                    def commitMessage = sh(script: 'git log -1 --pretty=%B', returnStdout: true).trim()
 
                     // Include the commit message, repo name, and job name in the environment
                     currentBuild.description = "Commit Message: $commitMessage, Repo Name: $REPO_NAME, Job Name: $JOB_NAME"
@@ -34,8 +34,10 @@ pipeline {
 
         stage('Notify') {
             steps {
-                // Send Slack notification with commit details
-                slackSend channel: 'devops-learning', color: 'good', message: currentBuild.description, tokenCredentialId: 'jenkinsSecretTokenBySlack'
+                script {
+                    // Send Slack notification with commit details
+                    slackSend channel: 'devops-learning', color: 'good', message: currentBuild.description, tokenCredentialId: 'jenkinsSecretTokenBySlack'
+                }
             }
         }
     }
