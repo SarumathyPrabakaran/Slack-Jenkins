@@ -16,7 +16,7 @@ pipeline {
         stage('GitStage') {
             steps {
                 script {
-                    // Clone the repository
+                    // Clone the repository --> My Private Repo.
                     checkout([
                         $class: 'GitSCM',
                         branches: [[name: 'main']],
