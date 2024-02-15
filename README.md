@@ -1,2 +1,2 @@
 # Slack-Jenkins
-Slack Message /buildnow &lt;Jobname> builds the app given that the user has required permissions
+This integration allows Jenkins to send a notification message to a designated Slack channel whenever changes are pushed to a repository.
